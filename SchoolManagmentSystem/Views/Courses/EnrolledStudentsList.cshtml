@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SchoolManagmentSystem.Models.Student>
+@{
+    ViewData["Title"] = "List of Students";
+}
+<h1>Students</h1>
+<table class="table table-light table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <button class="btn btn btn-light">
+        <a class="btn btn-ligt text-secondary" asp-action="Index">Back to List</a>
+    </button>
+</div>

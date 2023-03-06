@@ -1,0 +1,39 @@
+﻿
+@model List<SchoolManagmentSystem.Areas.Administrator.ViewModel.UserRolesViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+   
+@{
+    ViewData["Title"] = "Manage";
+    Layout = "_AdminLayout";
+}
+
+<br />
+<h1 class="d-flex justify-content-center" style="color:white;">User Roles</h1>
+<hr />
+<br />
+
+<table class="table table-striped" style="color:white;">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr style="color:white;">
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.Email</td>
+                <td>@string.Join(" , ", user.Roles.ToList())</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Adm" asp-action="Manage" asp-route-userId="@user.UserId">Manage Roles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

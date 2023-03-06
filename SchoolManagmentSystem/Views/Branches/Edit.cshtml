@@ -1,0 +1,43 @@
+﻿@model SchoolManagmentSystem.Models.Branch
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container p-3 bg-light bg-opacity-10 border border-info border-start rounded ">
+    <h3 class="d-flex justify-content-center">Edit Branch</h3>
+    <hr />
+    <div class="row d-flex justify-content-center ">
+        <div class="col-md-4">
+            <form asp-action="Edit" class="row g-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BranchID" />
+                <div class="form-group col-md-6">
+                <label asp-for="SMIAL" class="control-label"></label>
+                <input asp-for="SMIAL" class="form-control" />
+                <span asp-validation-for="SMIAL" class="text-danger"></span>
+            </div>
+                <div class="form-group col-md-6">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <label asp-for="Location" class="control-label"></label>
+            <select asp-for="Location" class="form-control" asp-items="@Html.GetEnumSelectList<Location>()">
+                <option value="">Select Location</option>
+            </select>
+                <div class="form-group d-flex justify-content-end">
+                    <input type="submit" value="Edit" class="btn btn-primary" />
+                </div>
+        </form>
+    </div>
+</div>
+
+    <button class="btn btn btn-light">
+        <a class="btn btn-ligt text-secondary" asp-action="Index">Back to List</a>
+    </button>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

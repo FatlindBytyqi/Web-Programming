@@ -1,0 +1,81 @@
+﻿@model PaginatedList<SchoolManagmentSystem.Models.DeptBranch>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1 class="text-center">Departments & Branches</h1>
+
+<div class="container d-flex justify-content-between">
+
+    <p>
+        <button class="btn btn btn-outline-light">
+            <a class="btn btn-outline-light text-primary" asp-action="Create">Create New Relation</a>
+        </button>
+    </p>
+
+
+<form asp-action="Index" method="get">
+     <div class="input-group">
+        <div class="form-outline">
+            <input type="search" id="form1" class="form-control" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Search Relations"/>
+        </div>
+        <button type="submit" class="btn btn-light">
+            Search
+        </button>
+    </div>
+</form>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DeptSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model => model[0].Department.Name)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["BranchSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(model => model[0].Branch.Name)</a>
+
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Branch.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

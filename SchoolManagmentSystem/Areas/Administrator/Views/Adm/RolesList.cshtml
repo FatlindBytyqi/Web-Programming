@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_AdminLayout";
+    ViewData["title"] = "Index";
+}
+
+<br />
+<h1 class="d-flex justify-content-center" style="color:white;">Roles</h1>
+<hr />
+<br />
+
+<div class="text-center" style="color:white;">
+
+    <table class="table border-5" style="color:white;">
+        <tbody>
+
+            @foreach (var role in ViewBag.roles)
+            {
+                <tr style="color:white;">
+                    <td>@role</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
